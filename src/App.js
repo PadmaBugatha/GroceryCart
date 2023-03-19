@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
-import NewExpense from "./components/NewExpense/NewExpense";
+import RecommendList from "./components/RecommendedExpenses/RecommendList";
 const DUMMY_EXPENSES = [
   {
     id: "e1",
@@ -22,6 +22,7 @@ const DUMMY_EXPENSES = [
     date: new Date(2021, 5, 12),
   },
 ];
+
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
@@ -30,9 +31,19 @@ const App = () => {
       return [expense, ...prevExpenses];
     });
   };
+
+  const key = "title";
+
+  const arrayUniqueByKey = [
+    ...new Map(expenses.map((item) => [item[key], item])).values(),
+  ];
+
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <RecommendList
+        onAddExpense={addExpenseHandler}
+        RECOMMENDED_EXPENSES={arrayUniqueByKey}
+      />
       <Expenses items={expenses} />
     </div>
   );

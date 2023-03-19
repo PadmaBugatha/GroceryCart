@@ -88,7 +88,10 @@ const Expenses = (props) => {
         {!isTouchingBar && <ExpensesList items={filteredExpenses} />}
         {isTouchingBar && (
           <div>
-            <h2>Grocery List of {testMonth} Month </h2>
+            <h2 style={{ color: "#0b65fa" }}>
+              Grocery List of{" "}
+              <span style={{ color: "#128d7d" }}>{testMonth}</span> Month
+            </h2>
             <ExpensesList items={filteredMonthExpenses} />
           </div>
         )}
